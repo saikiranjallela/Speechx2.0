@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+﻿import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { PermissionsStep } from '../PermissionsStep'
 
@@ -17,7 +17,7 @@ vi.mock('react-i18next', () => ({
     t: (key: string) =>
       ({
         'onboarding.permissions.subtitle':
-          'OpenTypeless asks for access only when a feature needs it.',
+          'SpeechX asks for access only when a feature needs it.',
         'onboarding.permissions.microphone': 'Microphone',
         'onboarding.permissions.microphoneDesc': 'Capture your voice.',
         'onboarding.permissions.textOutput': 'Text output',

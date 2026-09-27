@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+﻿import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Check, ChevronDown, Copy, Download, Pencil, Plus, Trash2, Upload } from 'lucide-react'
 import {
@@ -326,7 +326,7 @@ export function ScenesPane() {
     const url = URL.createObjectURL(blob)
     const link = document.createElement('a')
     link.href = url
-    link.download = `opentypeless-scenes-${new Date().toISOString().slice(0, 10)}.json`
+    link.download = `speechx-scenes-${new Date().toISOString().slice(0, 10)}.json`
     link.click()
     URL.revokeObjectURL(url)
   }

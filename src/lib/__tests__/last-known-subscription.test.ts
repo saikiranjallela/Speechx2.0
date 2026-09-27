@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+﻿import { describe, expect, it } from 'vitest'
 import type { SubscriptionStatus } from '../api'
 import {
   clearLastKnownSubscription,
@@ -52,7 +52,7 @@ describe('desktop last-known subscription cache', () => {
   it('rejects malformed cache entries and clears valid ones', () => {
     const storage = memoryStorage()
     storage.setItem(
-      'opentypeless.desktop-subscription.v1:user-1',
+      'speechx.desktop-subscription.v1:user-1',
       JSON.stringify({ version: 1, userId: 'user-1', verifiedAt: 'invalid', snapshot: stripePro }),
     )
     expect(

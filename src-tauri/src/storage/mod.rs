@@ -967,8 +967,22 @@ fn sanitize_custom_scenes(scenes: &mut Vec<CustomScene>) {
 fn system_scene_prompt(scene_id: &str) -> Option<&'static str> {
     match scene_id {
         "system_email" => Some(
-            "Email system mode: produce an email body when there is enough content. Use a greeting when the recipient is spoken, concise body paragraphs, and a light closing when appropriate. Do not generate a subject unless explicitly requested.",
-        ),
+    "Email system mode: produce an email body when there is enough content. Use a greeting when the recipient is spoken, concise body paragraphs, and a light closing when appropriate. Do not generate a subject unless explicitly requested.
+
+Additional email formatting rules:
+- Format the output as a real email body, not as a description of an email.
+- If a greeting is present or a recipient is identified, place the greeting on its own line.
+- After the greeting, insert a blank line before the main body.
+- Keep the main message in clear, readable paragraphs.
+- If the email contains multiple distinct points, put each point in a separate paragraph when appropriate.
+- If a closing is appropriate, place it on its own line after a blank line.
+- Preserve line breaks in the final output. Do not collapse the greeting, body, and closing into one paragraph or one line.
+- Do not add a subject unless explicitly requested.
+- Do not add labels such as \"Email:\", \"Email body:\", or \"Subject:\" unless explicitly requested.
+- When the user says \"write an email\", \"draft an email\", \"compose an email\", or \"an email to [recipient] saying/telling/asking...\", treat that as an instruction to generate the email, not as text that should appear in the final email.
+- Do not output phrases such as \"An email to David saying...\" or \"Here is the email...\".
+- Preserve the actual information and intent provided by the user. Do not invent additional facts.",
+),
         "system_work_chat" => Some(
             "Work chat system mode: keep it casual and concise. Use short sentences or simple line breaks when helpful. No greeting or sign-off.",
         ),

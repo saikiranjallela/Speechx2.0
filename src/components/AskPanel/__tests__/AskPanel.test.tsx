@@ -1,4 +1,4 @@
-import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+﻿import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import i18n from '../../../i18n'
 import { AskPanel } from '../AskPanel'
@@ -83,7 +83,7 @@ function askResult(
   overrides: Partial<Awaited<ReturnType<typeof stopAskDictation>>> = {},
 ): AskDictationResult {
   return {
-    question: 'What is OpenTypeless?',
+    question: 'What is SpeechX?',
     answer: 'It turns speech into useful text.',
     intent: 'open_question' as const,
     output: 'popupAnswer' as const,
@@ -148,7 +148,7 @@ describe('AskPanel', () => {
     tauriEventMock.emit('ask:result', askResult())
 
     await waitFor(() => {
-      expect(screen.getByText('What is OpenTypeless?')).toBeDefined()
+      expect(screen.getByText('What is SpeechX?')).toBeDefined()
       expect(screen.getByText('It turns speech into useful text.')).toBeDefined()
     })
     expect(screen.queryByRole('textbox')).toBeNull()
@@ -416,7 +416,7 @@ describe('AskPanel', () => {
 
     expect(abortAskDictation).not.toHaveBeenCalled()
     resolveStop({
-      question: 'What is OpenTypeless?',
+      question: 'What is SpeechX?',
       answer: 'It turns speech into useful text.',
       intent: 'open_question',
       output: 'popupAnswer',

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+﻿import { beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   claimDesktopAuthCallbackURL,
   createDesktopAuthCallbackURL,
@@ -23,7 +23,7 @@ describe('createDesktopAuthCallbackURL', () => {
 
   it('registers PKCE and keeps only state in the email verification callback', async () => {
     await expect(createDesktopAuthCallbackURL()).resolves.toBe(
-      'https://www.opentypeless.com/auth/callback?desktop=11111111-1111-4111-8111-111111111111',
+      'https://www.speechx.com/auth/callback?desktop=11111111-1111-4111-8111-111111111111',
     )
     const [, request] = fetchMock.mock.calls[0]
     const body = JSON.parse(request.body)
@@ -37,7 +37,7 @@ describe('createDesktopAuthCallbackURL', () => {
 
   it('adds the selected UI language without exposing proof material', async () => {
     await expect(createDesktopAuthCallbackURL(undefined, 'zh-CN')).resolves.toBe(
-      'https://www.opentypeless.com/auth/callback?desktop=11111111-1111-4111-8111-111111111111&locale=zh',
+      'https://www.speechx.com/auth/callback?desktop=11111111-1111-4111-8111-111111111111&locale=zh',
     )
   })
 
@@ -45,7 +45,7 @@ describe('createDesktopAuthCallbackURL', () => {
     clearOAuthState()
 
     await expect(claimDesktopAuthCallbackURL()).resolves.toBe(
-      'https://www.opentypeless.com/auth/callback?desktop=11111111-1111-4111-8111-111111111111',
+      'https://www.speechx.com/auth/callback?desktop=11111111-1111-4111-8111-111111111111',
     )
     await expect(claimDesktopAuthCallbackURL()).resolves.toBeNull()
     expect(fetchMock).toHaveBeenCalledTimes(1)

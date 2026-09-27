@@ -1,8 +1,8 @@
-import { create } from 'zustand'
+﻿import { create } from 'zustand'
 import {
   authClient,
-  requestOpenTypelessPasswordReset,
-  setOpenTypelessPassword,
+  requestSpeechXPasswordReset,
+  setSpeechXPassword,
 } from '../lib/auth-client'
 import {
   clearSessionTokenFromMemory,
@@ -380,7 +380,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   requestPasswordReset: async (email, locale) => {
     set({ loading: true, error: null })
     try {
-      await requestOpenTypelessPasswordReset(email, locale)
+      await requestSpeechXPasswordReset(email, locale)
     } catch (e) {
       const message = e instanceof Error ? e.message : 'Failed to request password reset'
       set({ error: message })
@@ -422,7 +422,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
           throw new Error('Verify your email before setting a password')
         }
 
-        await setOpenTypelessPassword(newPassword)
+        await setSpeechXPassword(newPassword)
         await get().refreshCredentialCapability()
       } else {
         if (!currentPassword) throw new Error('Current password is required')

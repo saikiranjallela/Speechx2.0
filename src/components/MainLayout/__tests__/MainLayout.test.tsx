@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { MainLayout } from '../index'
@@ -38,7 +38,7 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) =>
       ({
-        'app.name': 'OpenTypeless',
+        'app.name': 'SpeechX',
         'app.tagline': 'AI Voice Input',
         'nav.home': 'Home',
         'nav.ask': 'Ask',

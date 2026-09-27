@@ -1,6 +1,6 @@
-import type { CheckoutProduct } from './constants'
+﻿import type { CheckoutProduct } from './constants'
 
-const STORAGE_KEY = 'opentypeless.desktop-checkout-intent.v1'
+const STORAGE_KEY = 'speechx.desktop-checkout-intent.v1'
 const MAX_FUTURE_CLOCK_SKEW_MS = 5 * 60 * 1000
 export const DESKTOP_CHECKOUT_INTENT_TTL_MS = 30 * 60 * 1000
 

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+﻿import { describe, expect, it } from 'vitest'
 import {
   DESKTOP_CHECKOUT_INTENT_TTL_MS,
   clearPendingDesktopCheckout,
@@ -36,12 +36,12 @@ describe('desktop checkout intent', () => {
     expect(readPendingDesktopCheckout(storage, now + DESKTOP_CHECKOUT_INTENT_TTL_MS)).toBeNull()
 
     storage.setItem(
-      'opentypeless.desktop-checkout-intent.v1',
+      'speechx.desktop-checkout-intent.v1',
       JSON.stringify({ product: 'custom_price', createdAt: now, expiresAt: now + 1_000 }),
     )
     expect(readPendingDesktopCheckout(storage, now)).toBeNull()
 
-    storage.setItem('opentypeless.desktop-checkout-intent.v1', '{broken')
+    storage.setItem('speechx.desktop-checkout-intent.v1', '{broken')
     expect(readPendingDesktopCheckout(storage, now)).toBeNull()
   })
 

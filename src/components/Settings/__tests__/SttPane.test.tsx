@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+﻿import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, fireEvent, waitFor, cleanup, within } from '@testing-library/react'
 import { SttPane } from '../SttPane'
 import * as tauri from '../../../lib/tauri'
@@ -46,7 +46,7 @@ vi.mock('react-i18next', () => ({
         'recordingLimits.reasons.clientBuffer': 'Client buffer limit',
         'recordingLimits.reasons.unknownUpstream': 'Upstream limit unknown',
         'recordingLimits.reasons.unknownProvider': 'Provider limit unknown',
-        'recordingLimits.reasons.managedCapability': 'Set automatically for OpenTypeless Cloud.',
+        'recordingLimits.reasons.managedCapability': 'Set automatically for SpeechX Cloud.',
         'recordingLimits.reasons.managedFallback': 'Safe Cloud fallback',
         'settings.cloudSttPro': 'Cloud STT (Pro)',
         'settings.sttSignInHint': 'Sign in to use cloud STT',
@@ -611,7 +611,7 @@ describe('SttPane', () => {
       expect(
         await screen.findByRole('option', { name: /Auto \(recommended,.*10 minutes/i }),
       ).toBeInTheDocument()
-      expect(screen.getByText('Set automatically for OpenTypeless Cloud.')).toBeInTheDocument()
+      expect(screen.getByText('Set automatically for SpeechX Cloud.')).toBeInTheDocument()
     })
   })
 

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+﻿import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Check,
@@ -65,7 +65,7 @@ function downloadText(content: string, format: 'json' | 'csv') {
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
   link.href = url
-  link.download = `opentypeless-dictionary-${new Date().toISOString().slice(0, 10)}.${format}`
+  link.download = `speechx-dictionary-${new Date().toISOString().slice(0, 10)}.${format}`
   link.click()
   URL.revokeObjectURL(url)
 }

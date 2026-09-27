@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest'
+﻿import { describe, expect, it, vi, beforeEach } from 'vitest'
 import { invoke } from '@tauri-apps/api/core'
 import {
   askAnything,
@@ -22,10 +22,10 @@ describe('Ask Anything Tauri wrappers', () => {
   it('invokes the ask_anything command with the trimmed question', async () => {
     vi.mocked(invoke).mockResolvedValueOnce('A short answer.')
 
-    const answer = await askAnything('  What is OpenTypeless?  ')
+    const answer = await askAnything('  What is SpeechX?  ')
 
     expect(answer).toBe('A short answer.')
-    expect(invoke).toHaveBeenCalledWith('ask_anything', { question: 'What is OpenTypeless?' })
+    expect(invoke).toHaveBeenCalledWith('ask_anything', { question: 'What is SpeechX?' })
   })
 
   it('invokes the ask hotkey update command independently from dictation hotkey', async () => {

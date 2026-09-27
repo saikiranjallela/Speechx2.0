@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+﻿import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { LlmSetupStep } from '../LlmSetupStep'
 import * as tauri from '../../../lib/tauri'
@@ -67,7 +67,7 @@ describe('LlmSetupStep', () => {
     mockStore.config = {
       llm_provider: 'cloud',
       llm_api_key: '',
-      llm_base_url: 'https://www.opentypeless.com/api/proxy',
+      llm_base_url: 'https://www.speechx.com/api/proxy',
       llm_model: 'default',
     }
 

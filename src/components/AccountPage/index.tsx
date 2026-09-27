@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+﻿import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   LogOut,
@@ -52,7 +52,7 @@ function accountErrorMessage(message: string | null, t: ReturnType<typeof useTra
   ) {
     return t(
       'account.networkError',
-      'Could not reach OpenTypeless cloud. Check your connection and try again.',
+      'Could not reach SpeechX cloud. Check your connection and try again.',
     )
   }
   return message

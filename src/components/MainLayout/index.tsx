@@ -1,9 +1,8 @@
-import { Home, Settings, History, Crown, CircleUser } from 'lucide-react'
+import { Home, Settings, History, CircleUser } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { spring } from '../../lib/animations'
 import { useRoute, type Route } from '../../lib/router'
-import { hasManagedCloudAccess, useAuthStore } from '../../stores/authStore'
 import { AccessibilityBanner } from './AccessibilityBanner'
 import { CloudServiceBanner } from './CloudServiceBanner'
 
@@ -21,7 +20,6 @@ interface Props {
 
 export function MainLayout({ children }: Props) {
   const { route, navigate } = useRoute()
-  const hasCloudAccess = useAuthStore(hasManagedCloudAccess)
   const { t } = useTranslation()
 
   return (
@@ -69,37 +67,7 @@ export function MainLayout({ children }: Props) {
             )
           })}
 
-          {/* Upgrade / Pro nav item */}
-          {(() => {
-            const active = route === 'upgrade'
-            return (
-              <motion.button
-                onClick={() => navigate('upgrade')}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scaleX: 1.05, scaleY: 0.95 }}
-                transition={spring.jellyGentle}
-                className={`flex items-center gap-2.5 w-full px-3 py-2 text-[13px] rounded-[8px] transition-colors bg-transparent border-none cursor-pointer text-left relative ${
-                  active
-                    ? 'text-text-primary font-medium'
-                    : hasCloudAccess
-                      ? 'text-amber-500 hover:text-amber-400'
-                      : 'text-text-secondary hover:text-text-primary'
-                }`}
-              >
-                {active && (
-                  <motion.div
-                    layoutId="nav-indicator"
-                    className="absolute inset-0 jelly-nav-active"
-                    transition={spring.jellyGentle}
-                  />
-                )}
-                <span className="relative z-10 flex items-center gap-2.5">
-                  <Crown size={16} className={hasCloudAccess ? 'text-amber-500' : ''} />
-                  {hasCloudAccess ? t('nav.pro') : t('nav.upgrade')}
-                </span>
-              </motion.button>
-            )
-          })()}
+
         </nav>
 
         {/* Bottom: Account */}

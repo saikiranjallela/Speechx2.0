@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+﻿import { describe, expect, it } from 'vitest'
 import ciWorkflowSource from '../../../.github/workflows/ci.yml?raw'
 import appImageVerificationScriptSource from '../../../.github/scripts/verify-appimage-runtime-libraries.sh?raw'
 import appImagePluginWrapperSource from '../../../.github/scripts/linuxdeploy-plugin-appimage-exclude-wrapper.sh?raw'
@@ -50,7 +50,7 @@ describe('release version wiring', () => {
       'sha_file="$verification_dir/SHA256SUMS-linux-${LINUX_ARCH}.txt"',
     )
     expect(linuxVerificationScriptSource).toContain(
-      'public_key_path="$verification_dir/OpenTypeless-Linux-${LINUX_ARCH}-GPG-KEY.asc"',
+      'public_key_path="$verification_dir/SpeechX-Linux-${LINUX_ARCH}-GPG-KEY.asc"',
     )
   })
 

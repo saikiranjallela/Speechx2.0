@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Settings 组件测试集
  *
  * 覆盖以下范围：
@@ -107,7 +107,7 @@ vi.mock('../../../lib/tauri', () => ({
   startAskFlow: vi.fn().mockResolvedValue(undefined),
   startAskDictation: vi.fn().mockResolvedValue(undefined),
   stopAskDictation: vi.fn().mockResolvedValue({
-    question: 'What is OpenTypeless?',
+    question: 'What is SpeechX?',
     answer: 'A concise answer.',
   }),
   abortAskDictation: vi.fn().mockResolvedValue(undefined),

@@ -1,4 +1,4 @@
-import { onOpenUrl } from '@tauri-apps/plugin-deep-link'
+﻿import { onOpenUrl } from '@tauri-apps/plugin-deep-link'
 import { useAuthStore } from '../stores/authStore'
 import { API_BASE_URL } from './constants'
 
@@ -73,13 +73,13 @@ export async function handleDeepLinkUrl(rawUrl: string): Promise<boolean> {
   }
 
   // Only accept our custom scheme
-  if (url.protocol !== 'opentypeless:') return false
+  if (url.protocol !== 'speechx:') return false
 
   const path = url.hostname ? url.hostname + url.pathname : url.pathname.replace(/^\/+/, '')
   const params = url.searchParams
   console.log('[deep-link] received:', `${url.protocol}${path}`)
 
-  // opentypeless://auth/callback?code=xxx&state=yyy
+  // speechx://auth/callback?code=xxx&state=yyy
   if (path === 'auth/callback' || path === 'auth/callback/') {
     const code = params.get('code')
     const state = params.get('state')
@@ -115,7 +115,7 @@ export async function handleDeepLinkUrl(rawUrl: string): Promise<boolean> {
     }
   }
 
-  // opentypeless://checkout/success
+  // speechx://checkout/success
   if (path === 'checkout/success' || path === 'checkout/success/') {
     await useAuthStore.getState().refreshSubscription()
     window.location.hash = '#/upgrade'

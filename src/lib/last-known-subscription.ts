@@ -1,4 +1,4 @@
-import type { SubscriptionStatus } from './api'
+﻿import type { SubscriptionStatus } from './api'
 
 export interface LastKnownSubscription {
   verifiedAt: string
@@ -6,7 +6,7 @@ export interface LastKnownSubscription {
 }
 
 const CACHE_VERSION = 1
-const CACHE_PREFIX = 'opentypeless.desktop-subscription.v1:'
+const CACHE_PREFIX = 'speechx.desktop-subscription.v1:'
 export const LAST_KNOWN_SUBSCRIPTION_TTL_MS = 24 * 60 * 60 * 1000
 const MAX_CLOCK_SKEW_MS = 5 * 60 * 1000
 

@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+﻿import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { invoke } from '@tauri-apps/api/core'
 import {
   addCorrectionRule,
@@ -136,18 +136,18 @@ describe('dictionary correction commands', () => {
   it('updates dictionary and correction rows through typed commands', async () => {
     vi.mocked(invoke).mockResolvedValue(undefined)
 
-    await updateDictionaryEntry(4, 'OpenTypeless', 'open typeless')
-    await updateCorrectionRule(7, 'open type less', 'OpenTypeless', false)
+    await updateDictionaryEntry(4, 'SpeechX', 'open typeless')
+    await updateCorrectionRule(7, 'open type less', 'SpeechX', false)
 
     expect(invoke).toHaveBeenNthCalledWith(1, 'update_dictionary_entry', {
       id: 4,
-      word: 'OpenTypeless',
+      word: 'SpeechX',
       pronunciation: 'open typeless',
     })
     expect(invoke).toHaveBeenNthCalledWith(2, 'update_correction_rule', {
       id: 7,
       pattern: 'open type less',
-      replacement: 'OpenTypeless',
+      replacement: 'SpeechX',
       enabled: false,
     })
   })

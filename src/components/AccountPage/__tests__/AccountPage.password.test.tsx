@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+﻿import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import i18n from '../../../i18n'
 import * as api from '../../../lib/api'
@@ -263,12 +263,12 @@ describe('AccountPage password controls', () => {
       cloudWordsLimit: 1000,
       licenseStatus: 'active',
     })
-    const dictionary = [{ id: 7, word: 'OpenTypeless', pronunciation: null }]
+    const dictionary = [{ id: 7, word: 'SpeechX', pronunciation: null }]
     const correctionRules = [
       {
         id: 9,
         pattern: 'open type less',
-        replacement: 'OpenTypeless',
+        replacement: 'SpeechX',
         enabled: true,
       },
     ]

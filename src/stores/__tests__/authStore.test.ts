@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+﻿import { describe, it, expect, vi, beforeEach } from 'vitest'
 import packageJson from '../../../package.json'
 import { hasManagedCloudAccess, useAuthStore } from '../authStore'
 
@@ -17,8 +17,8 @@ vi.mock('../../lib/auth-client', () => ({
     changePassword: vi.fn(),
     signOut: vi.fn(),
   },
-  requestOpenTypelessPasswordReset: vi.fn(),
-  setOpenTypelessPassword: vi.fn(),
+  requestSpeechXPasswordReset: vi.fn(),
+  setSpeechXPassword: vi.fn(),
 }))
 
 vi.mock('../../lib/api', () => ({
@@ -31,7 +31,7 @@ vi.mock('../../components/toast-service', () => ({
 
 import { invoke } from '@tauri-apps/api/core'
 import { authClient } from '../../lib/auth-client'
-import { requestOpenTypelessPasswordReset, setOpenTypelessPassword } from '../../lib/auth-client'
+import { requestSpeechXPasswordReset, setSpeechXPassword } from '../../lib/auth-client'
 import { getSubscriptionStatus } from '../../lib/api'
 import {
   loadSessionToken,
@@ -96,8 +96,8 @@ describe('authStore', () => {
     vi.mocked(authClient.listAccounts).mockResolvedValue({ data: [], error: null } as never)
     vi.mocked(authClient.changePassword).mockResolvedValue({ data: null, error: null } as never)
     vi.mocked(authClient.signOut).mockResolvedValue(undefined as never)
-    vi.mocked(requestOpenTypelessPasswordReset).mockResolvedValue(undefined)
-    vi.mocked(setOpenTypelessPassword).mockResolvedValue(undefined)
+    vi.mocked(requestSpeechXPasswordReset).mockResolvedValue(undefined)
+    vi.mocked(setSpeechXPassword).mockResolvedValue(undefined)
     vi.mocked(getSubscriptionStatus).mockResolvedValue({
       plan: 'pro',
       source: 'creem',
@@ -138,7 +138,7 @@ describe('authStore', () => {
   describe('email verification callback', () => {
     it('passes a desktop callback URL when signing up', async () => {
       await getState().signUp('test@example.com', 'password123', 'Test', {
-        verificationCallbackURL: 'https://www.opentypeless.com/auth/callback?from=desktop',
+        verificationCallbackURL: 'https://www.speechx.com/auth/callback?from=desktop',
       })
 
       expect(authClient.signUp.email).toHaveBeenCalledWith(
@@ -146,7 +146,7 @@ describe('authStore', () => {
           email: 'test@example.com',
           password: 'password123',
           name: 'Test',
-          callbackURL: 'https://www.opentypeless.com/auth/callback?from=desktop',
+          callbackURL: 'https://www.speechx.com/auth/callback?from=desktop',
         },
         expect.any(Object),
       )
@@ -161,12 +161,12 @@ describe('authStore', () => {
       } as never)
 
       await getState().signIn('test@example.com', 'password123', {
-        verificationCallbackURL: 'https://www.opentypeless.com/auth/callback?from=desktop',
+        verificationCallbackURL: 'https://www.speechx.com/auth/callback?from=desktop',
       })
 
       expect(authClient.sendVerificationEmail).toHaveBeenCalledWith({
         email: 'test@example.com',
-        callbackURL: 'https://www.opentypeless.com/auth/callback?from=desktop',
+        callbackURL: 'https://www.speechx.com/auth/callback?from=desktop',
       })
       expect(getState().emailVerificationPending).toBe(true)
     })
@@ -175,12 +175,12 @@ describe('authStore', () => {
       useAuthStore.setState({ pendingEmail: 'test@example.com' })
 
       await getState().resendVerification({
-        verificationCallbackURL: 'https://www.opentypeless.com/auth/callback?from=desktop',
+        verificationCallbackURL: 'https://www.speechx.com/auth/callback?from=desktop',
       })
 
       expect(authClient.sendVerificationEmail).toHaveBeenCalledWith({
         email: 'test@example.com',
-        callbackURL: 'https://www.opentypeless.com/auth/callback?from=desktop',
+        callbackURL: 'https://www.speechx.com/auth/callback?from=desktop',
       })
     })
   })
@@ -452,7 +452,7 @@ describe('authStore', () => {
     it('requests a reset through the canonical wrapper', async () => {
       await getState().requestPasswordReset('person@example.com', 'zh')
 
-      expect(requestOpenTypelessPasswordReset).toHaveBeenCalledWith('person@example.com', 'zh')
+      expect(requestSpeechXPasswordReset).toHaveBeenCalledWith('person@example.com', 'zh')
     })
 
     it('maps OAuth-only accounts to no credential capability', async () => {
@@ -518,7 +518,7 @@ describe('authStore', () => {
 
       await getState().changePassword(null, 'new-password')
 
-      expect(setOpenTypelessPassword).toHaveBeenCalledWith('new-password')
+      expect(setSpeechXPassword).toHaveBeenCalledWith('new-password')
       expect(authClient.changePassword).not.toHaveBeenCalled()
       expect(await loadSessionToken()).toBe('existing-token')
       expect(localStorage.getItem('session_token')).toBeNull()
@@ -541,7 +541,7 @@ describe('authStore', () => {
       expect(authClient.sendVerificationEmail).toHaveBeenCalledWith({
         email: 'person@example.com',
       })
-      expect(setOpenTypelessPassword).not.toHaveBeenCalled()
+      expect(setSpeechXPassword).not.toHaveBeenCalled()
     })
   })
 
@@ -549,7 +549,7 @@ describe('authStore', () => {
     it('clears only cloud identity and keeps local data and BYOK values', async () => {
       localStorage.setItem('session_token', 'expired-token')
       localStorage.setItem('talkmore_history', '[{"id":"local"}]')
-      localStorage.setItem('talkmore_dictionary', '["OpenTypeless"]')
+      localStorage.setItem('talkmore_dictionary', '["SpeechX"]')
       localStorage.setItem('byok_api_key', 'local-provider-key')
       useAuthStore.setState({
         user: {
@@ -568,7 +568,7 @@ describe('authStore', () => {
       expect(getState().plan).toBe('free')
       expect(localStorage.getItem('session_token')).toBeNull()
       expect(localStorage.getItem('talkmore_history')).toBe('[{"id":"local"}]')
-      expect(localStorage.getItem('talkmore_dictionary')).toBe('["OpenTypeless"]')
+      expect(localStorage.getItem('talkmore_dictionary')).toBe('["SpeechX"]')
       expect(localStorage.getItem('byok_api_key')).toBe('local-provider-key')
     })
   })

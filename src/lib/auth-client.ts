@@ -1,4 +1,4 @@
-import { createAuthClient } from 'better-auth/client'
+﻿import { createAuthClient } from 'better-auth/client'
 import { API_BASE_URL, APP_VERSION_HEADER_VALUE, CLIENT_VERSION_HEADER } from './constants'
 import { loadSessionToken } from './cloud-session'
 
@@ -17,7 +17,7 @@ const fetchWithToken: typeof fetch = async (url, init) => {
   return fetch(url, { ...init, headers })
 }
 
-async function openTypelessAuthRequest(path: string, body: unknown): Promise<void> {
+async function speechXAuthRequest(path: string, body: unknown): Promise<void> {
   const response = await fetchWithToken(`${API_BASE_URL}${path}`, {
     method: 'POST',
     credentials: 'include',
@@ -36,12 +36,12 @@ async function openTypelessAuthRequest(path: string, body: unknown): Promise<voi
   throw new Error(message || 'Authentication request failed')
 }
 
-export function requestOpenTypelessPasswordReset(email: string, locale: string): Promise<void> {
-  return openTypelessAuthRequest('/api/opentypeless/auth/request-password-reset', { email, locale })
+export function requestSpeechXPasswordReset(email: string, locale: string): Promise<void> {
+  return speechXAuthRequest('/api/speechx/auth/request-password-reset', { email, locale })
 }
 
-export function setOpenTypelessPassword(newPassword: string): Promise<void> {
-  return openTypelessAuthRequest('/api/opentypeless/auth/set-password', { newPassword })
+export function setSpeechXPassword(newPassword: string): Promise<void> {
+  return speechXAuthRequest('/api/speechx/auth/set-password', { newPassword })
 }
 
 export const authClient = createAuthClient({
